@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# BookFlow — WhatsApp Booking MVP
 
-# Run and deploy your AI Studio app
+A mobile-friendly frontend MVP for a WhatsApp-first appointment booking product for local businesses.
 
-This contains everything you need to run your app locally.
+## Included now
 
-View your app in AI Studio: https://ai.studio/apps/drive/1hKvyKVwlW8VAISbRSM92sVwypRUMOJwV
+- Owner dashboard
+- Today's bookings and upcoming appointments
+- Availability view
+- Customer WhatsApp conversation simulator
+- Book → date → time → confirmation flow
+- Booking records stored in frontend demo state
+- Reschedule/cancel flow placeholders
+- Reminder architecture notes
+- Responsive mobile UI
 
-## Run Locally
+## Production architecture
 
-**Prerequisites:**  Node.js
+Customer WhatsApp → Meta Cloud API → Backend webhook → Booking service → Supabase/Postgres → Google Calendar
 
+The frontend intentionally contains no WhatsApp access token, database secret, or API credential.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Run
+
+Node.js is required.
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the Vite URL.
+
+## Next production work
+
+1. Create Meta WhatsApp Business app and webhook.
+2. Add Node.js API with webhook verification and message routing.
+3. Add Supabase/Postgres tables and transactional slot locking.
+4. Add Google Calendar OAuth and event sync.
+5. Add a scheduler/queue for 24-hour and 2-hour utility reminders.
+6. Add owner authentication and business onboarding.
+7. Add consent, opt-out and data-retention controls appropriate to the deployment.
+8. Replace the demo state with API calls.
+
+Do not put Meta tokens or Supabase service-role keys in browser code.
